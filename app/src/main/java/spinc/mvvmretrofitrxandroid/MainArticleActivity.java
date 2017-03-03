@@ -14,6 +14,8 @@ import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import spinc.mvvmretrofitrxandroid.adapter.ArticleAdapter;
+import spinc.mvvmretrofitrxandroid.dagger.component.VehicleComponent;
+import spinc.mvvmretrofitrxandroid.dagger.module.VehicleModule;
 import spinc.mvvmretrofitrxandroid.databinding.ActivityArticleBinding;
 import spinc.mvvmretrofitrxandroid.model.ArticleModel;
 import spinc.mvvmretrofitrxandroid.net.ApiService;
@@ -29,12 +31,14 @@ public class MainArticleActivity extends AppCompatActivity implements Observer<O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+      //  VehicleComponent component = Dagger_VehicleComponent.builder().vehicleModule(new VehicleModule()).build();
+
         ActivityArticleBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_article);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         binding.contactList.setLayoutManager(layoutManager);
         adapter = new ArticleAdapter(listArticle, this);
         binding.contactList.setAdapter(adapter);
-        apiService = new ApiService(false);
+        apiService = new ApiService();
         loadArticles();
     }
 
