@@ -66,13 +66,12 @@ public class ArticleViewModel extends BaseObservable {
         return mArticle.getImageUrl();
     }
 
-    public void setRead(boolean read) {
-        // change title of already read article:
-        if (read && !mArticle.isRead()) {
-            setTitle("READ: " + getTitle());
-        }
+    public void setRead() {
+       mArticle.swapIsRead();
+    }
 
-        mArticle.setRead(read);
+    public boolean getRead(){
+        return mArticle.isRead();
     }
 
     public View.OnClickListener onReadMoreClicked() {
@@ -80,7 +79,7 @@ public class ArticleViewModel extends BaseObservable {
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Opens article detail", Toast.LENGTH_SHORT).show();
-                setRead(true);
+                setRead();
             }
         };
     }

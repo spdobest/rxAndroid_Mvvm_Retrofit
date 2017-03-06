@@ -68,4 +68,11 @@ public class ArticleModel {
     public void setRead(boolean read) {
         this.read = read;
     }
+
+    public void swapIsRead() {
+        if (isRead())
+            this.read = false;
+        else
+            this.read = true;
+    }
 }
